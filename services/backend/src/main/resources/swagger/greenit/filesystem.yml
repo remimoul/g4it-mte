@@ -1,0 +1,73 @@
+openapi: "3.0.3"
+info:
+  title: Swagger GreenIT - Open API 3.0 - FileSystem
+  description: This is a Inventory Server based on the OpenAPI 3.0 specification.
+  version: '1.0.0'
+
+tags:
+  - name: file-system
+    description: All endpoint to interact with filesystem
+
+paths:
+  /subscribers/{subscriber}/organizations/{organization}/inventories/{inventoryId}/files:
+    parameters:
+      - $ref: '#/components/parameters/subscriberPathParam'
+      - $ref: '#/components/parameters/organizationPathParam'
+      - $ref: '#/components/parameters/inventoryIdPathParam'
+    get:
+      summary: Endpoint to retrieve files in storage.
+      description: Endpoint to retrieve files in storage.
+      operationId: listFiles
+      x-custom-role: "hasRole('INVENTORY_WRITE')"
+      tags:
+        - file-system
+      responses:
+        '200':
+          description: Return files
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FileDescriptionRest"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /subscribers/{subscriber}/organizations/{organization}/inventories/{inventoryId}/output/{taskId}:
+    parameters:
+      - $ref: '#/components/parameters/subscriberPathParam'
+      - $ref: '#/components/parameters/organizationPathParam'
+      - $ref: '#/components/parameters/inventoryIdPathParam'
+      - $ref: '#/components/parameters/taskIdPathParam'
+    get:
+      summary: Endpoint to retrieve results file in storage.
+      description: Endpoint to retrieve results file in storage.
+      operationId: downloadResultsFile
+      x-custom-role: "hasRole('INVENTORY_WRITE')"
+      tags:
+        - file-system
+      responses:
+        '200':
+          description: Download results file
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  contentTypes:
+    application/zip:
+      schema:
+        type: string
+        format: binary

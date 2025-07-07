@@ -1,0 +1,78 @@
+<div
+    class="filter-component"
+    (click)="overlayVisible = !overlayVisible"
+    (keydown.enter)="overlayVisible = !overlayVisible"
+    label="Show Overlay"
+    tabindex="0"
+    role="button"
+    [attr.aria-label]="'common.access-filters' | translate"
+    id="filter-component"
+>
+    <div>
+        @if (selectedFilterNames().length) {
+            <i class="pi pi-filter-fill"></i>
+        } @else {
+            <i class="pi pi-filter"></i>
+        }
+
+        <span class="ml-3">
+            {{ "inventories-footprint.filter" | translate }}
+            @if (selectedFilterNames().length) {
+                <i>
+                    {{ "-" }}
+                    {{ "inventories-footprint.active-filters" | translate }}
+                    {{ ": " + selectedFilterNames() }}
+                </i>
+            }
+        </span>
+    </div>
+    <i class="pi pi-chevron-down font-bold mx-3"></i>
+</div>
+<p-overlay
+    [(visible)]="overlayVisible"
+    [responsive]="{
+        breakpoint: '640px',
+        direction: 'bottom',
+        contentStyleClass: 'h-20rem',
+    }"
+    contentStyleClass="p-4 surface-overlay shadow-2 border-round filter-overlay"
+>
+    <p-tabView>
+        @for (tab of tabs; track $index) {
+            <p-tabPanel
+                header="{{ 'inventories-footprint.filter-tabs.' + tab | translate }}"
+                [id]="tab"
+            >
+                <p-scrollPanel
+                    mode="vertical"
+                    [style]="{ width: '96%', height: '240px' }"
+                >
+                    <ul>
+                        @for (item of allFilters[tab]; track $index) {
+                            <li>
+                                <p-checkbox
+                                    tabindex="0"
+                                    [ariaLabel]="item?.toString()"
+                                    name="groupname"
+                                    [value]="item"
+                                    label="{{
+                                        item === all
+                                            ? ('common.all' | translate)
+                                            : item === empty
+                                              ? ('common.empty' | translate)
+                                              : item
+                                    }}"
+                                    [ngModel]="footprintStore.filters()[tab]"
+                                    (ngModelChange)="
+                                        onCheckboxChange($event, tab, item.toString())
+                                    "
+                                    [id]="item"
+                                ></p-checkbox>
+                            </li>
+                        }
+                    </ul>
+                </p-scrollPanel>
+            </p-tabPanel>
+        }
+    </p-tabView>
+</p-overlay>

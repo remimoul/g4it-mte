@@ -1,0 +1,35 @@
+<div class="table-container">
+    <app-digital-service-table
+        titleText="cloud-services"
+        addButton="add"
+        translationPrefix="digital-services-cloud-services"
+        [headerFields]="headerFields"
+        [data]="cloudServices()"
+        (sidebar)="changeSidebar($event)"
+        (resetItem)="resetCloudServices()"
+        (setItem)="setItem($event)"
+        (deleteItem)="deleteItem($event)"
+        addButtonId="add-cloud"
+    ></app-digital-service-table>
+</div>
+
+@if (sidebarVisible) {
+    <p-sidebar
+        [(visible)]="sidebarVisible"
+        position="right"
+        styleClass="p-sidebar-md"
+        (onHide)="childSidePanel.close()"
+        ariaCloseLabel="Close"
+    >
+        <app-digital-services-cloud-services-side-panel
+            #childSidePanel
+            [cloud]="cloud"
+            [sidebarVisible]="sidebarVisible"
+            [cloudServices]="cloudServices()"
+            (sidebarVisibleChange)="sidebarVisible = $event"
+            (updateCloudServices)="updateCloudServices($event)"
+            (deleteCloudServices)="deleteCloudServices($event)"
+        >
+        </app-digital-services-cloud-services-side-panel>
+    </p-sidebar>
+}

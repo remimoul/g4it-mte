@@ -1,0 +1,32 @@
+<div class="table-container">
+    <app-digital-service-table
+        titleText="networks"
+        addButton="add"
+        translationPrefix="digital-services-networks"
+        [headerFields]="headerFields"
+        [data]="networkData()"
+        addButtonId="add-networks"
+        (sidebar)="changeSidebar($event)"
+        (resetItem)="resetNetwork()"
+        (setItem)="setItem($event)"
+        (deleteItem)="deleteItem($event)"
+    ></app-digital-service-table>
+</div>
+@if (sidebarVisible) {
+    <p-sidebar
+        [(visible)]="sidebarVisible"
+        position="right"
+        styleClass="p-sidebar-lg"
+        (onHide)="networkSidePanel.close()"
+        ariaCloseLabel="Close"
+    >
+        <app-digital-services-networks-side-panel
+            #networkSidePanel
+            (sidebarVisible)="(sidebarVisible)"
+            [network]="network"
+            (update)="actionNetwork('update', $event)"
+            (delete)="actionNetwork('delete', $event)"
+            (cancel)="actionNetwork('cancel', $event)"
+        ></app-digital-services-networks-side-panel>
+    </p-sidebar>
+}

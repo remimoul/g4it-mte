@@ -1,0 +1,242 @@
+<p-accordionTab
+    tabStyleClass="bg-white shadow-none px-3"
+    [selected]="open"
+    (selectedChange)="onSelectedChange(inventory.id, $event)"
+    [headerAriaLevel]="3"
+>
+    <ng-template pTemplate="header">
+        <div
+            class="flex flex-row justify-content-between w-full"
+            [attr.aria-label]="inventory.name"
+        >
+            <div class="flex align-items-center text-lg">
+                {{ inventory.name | monthYear }}
+            </div>
+            <div class="flex align-items-center"></div>
+            <div class="flex align-items-center">
+                <p-button
+                    *ngIf="
+                        !inventory.note && (userService.isAllowedInventoryWrite$ | async)
+                    "
+                    (click)="$event.stopPropagation(); openSidebarNote()"
+                    (keydown.enter)="$event.stopPropagation(); openSidebarNote()"
+                    styleClass="inventory-add-button-small mx-2"
+                    [ariaLabel]="'common.accessibility.addNote' | translate"
+                    icon="pi pi-plus-circle"
+                    [label]="'common.note.add' | translate"
+                />
+
+                <p-button
+                    *ngIf="inventory.note"
+                    (click)="$event.stopPropagation(); openSidebarNote()"
+                    (keydown.enter)="$event.stopPropagation(); openSidebarNote()"
+                    styleClass="inventory-attached-button-small mx-2"
+                    [ariaLabel]="'common.accessibility.attachedNote' | translate"
+                    icon="pi pi-clipboard"
+                    [label]="'common.note.attached' | translate"
+                />
+
+                <p-button
+                    *ngIf="isTaskRunning()"
+                    [disabled]="true"
+                    styleClass="inventory-button-small ml-5 mr-6 disabled-text-black"
+                    icon="pi pi-refresh"
+                    [label]="'common.updateInProgress' | translate"
+                />
+
+                <p-button
+                    *ngIf="!isTaskRunning()"
+                    [disabled]="!showEquipment()"
+                    styleClass="inventory-button-small mx-2"
+                    (click)="$event.stopPropagation(); redirectFootprint('equipment')"
+                    (keydown.enter)="
+                        $event.stopPropagation(); redirectFootprint('equipment')
+                    "
+                    icon="pi pi-arrow-right"
+                    [label]="'inventories.details.equipment' | translate"
+                    id="inventory-equipment-button"
+                />
+
+                <p-button
+                    *ngIf="!isTaskRunning()"
+                    [disabled]="!showApplication()"
+                    styleClass="inventory-button-small ml-2 mr-3"
+                    (click)="$event.stopPropagation(); redirectFootprint('application')"
+                    (keydown.enter)="
+                        $event.stopPropagation(); redirectFootprint('application')
+                    "
+                    icon="pi pi-arrow-right"
+                    [label]="'inventories.details.application' | translate"
+                    id="inventory-application-button"
+                />
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate>
+        <div class="h-2rem border-top-2 border-primary p-0 mt-1"></div>
+        <div class="grid">
+            <div class="col-12 lg:col-4">
+                <div class="flex flex-row">
+                    <app-equipments-card
+                        [count]="inventory.dataCenterCount"
+                        [type]="'datacenter'"
+                    ></app-equipments-card>
+                    <app-equipments-card
+                        [count]="inventory.physicalEquipmentCount"
+                        [type]="'physical'"
+                    ></app-equipments-card>
+                </div>
+                <div class="flex flex-row">
+                    <app-equipments-card
+                        [count]="inventory.virtualEquipmentCount"
+                        [type]="'virtual'"
+                    ></app-equipments-card>
+                    <app-equipments-card
+                        [count]="inventory.applicationCount"
+                        [type]="'app'"
+                    ></app-equipments-card>
+                </div>
+                <p-button
+                    *ngIf="userService.isAllowedInventoryWrite$ | async"
+                    styleClass="bg-transparent text-black-alpha-90 border-1 border-solid border-black-alpha-90 mt-2 pt-1 px-2 pb-1 hover:bg-green-50"
+                    (click)="confirmDelete($event)"
+                    (keypress)="confirmDelete($event)"
+                    id="delete-inventory"
+                >
+                    <img
+                        class="mb-1"
+                        src="assets/images/icons/icon-bin.svg"
+                        alt="{{ 'common.accessibility.delete' | translate }} {{
+                            inventory.name
+                        }}"
+                    />
+                    {{ "common.delete" | translate | uppercase }}
+                    <p-confirmPopup
+                        [style]="{ width: '500px' }"
+                        closeOnEscape="true"
+                    ></p-confirmPopup>
+                </p-button>
+            </div>
+
+            <div class="col-12 lg:col-4">
+                <span id="loading-history" class="mr-3" role="heading" [ariaLevel]="4">
+                    {{ "inventories.history.loadings" | translate }}
+                </span>
+                <p-button
+                    *ngIf="userService.isAllowedInventoryWrite$ | async"
+                    styleClass="black-button-small vertical-align-top uppercase"
+                    (onClick)="openSidebarUploadFile()"
+                    >{{ "inventories.load-files-button" | translate }}</p-button
+                >
+                <br />
+                <ul aria-labelledby="loading-history" style="padding: 0">
+                    <li class="loading-data-container" *ngFor="let task of taskLoading">
+                        <app-batch-status
+                            [batchStatusCode]="task.status"
+                            [createTime]="task.creationDate"
+                            [batchLoading]="true"
+                            [type]="'loading'"
+                            [inventoryId]="inventory.id"
+                            [inventoryName]="inventory.name"
+                            [fileUrl]="task.resultFileUrl"
+                            [taskId]="task.id.toString()"
+                        ></app-batch-status>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 lg:col-4">
+                <span id="estimate-history" class="mr-3" role="heading" [ariaLevel]="4">
+                    {{ "inventories.history.estimations" | translate }}
+                </span>
+                <p-button
+                    *ngIf="userService.isAllowedInventoryWrite$ | async"
+                    [disabled]="isEstimationDisabled()"
+                    styleClass="black-button-small vertical-align-top uppercase"
+                    class="disabled-text-black"
+                    (onClick)="launchEstimate($event)"
+                    id="launch-estimate"
+                    ><span *ngIf="inventory.lastTaskEvaluating">
+                        {{ "inventories.update-estimate" | translate }}
+                    </span>
+                    <span *ngIf="!inventory.lastTaskEvaluating">
+                        {{ "inventories.launch-estimate" | translate }}
+                    </span>
+                </p-button>
+                <br />
+                <div *ngIf="inventory.lastTaskEvaluating">
+                    <div
+                        *ngIf="isTaskRunning()"
+                        [attr.aria-label]="
+                            'common.accessibility.updateInProgress'
+                                | translate
+                                    : {
+                                          value: inventory.lastTaskEvaluating.progress,
+                                      }
+                        "
+                    >
+                        <div class="font-bold mt-2">
+                            {{
+                                "inventories.evaluation_batch_status." +
+                                    batchStatusMapping[
+                                        inventory.lastTaskEvaluating.status
+                                    ] | translate
+                            }}
+                            {{ inventory.lastTaskEvaluating.progress }}%
+                        </div>
+
+                        <p-progressBar
+                            [value]="inventory.lastTaskEvaluating.progress"
+                            [showValue]="false"
+                            >{{ inventory.lastTaskEvaluating.progress }}
+                        </p-progressBar>
+                    </div>
+
+                    <ul aria-labelledby="estimate-history" class="p-0">
+                        <li
+                            class="loading-data-container"
+                            *ngFor="let task of taskEvaluating"
+                        >
+                            <app-batch-status
+                                [batchStatusCode]="task.status"
+                                [createTime]="task.creationDate"
+                                [batchLoading]="true"
+                                [type]="'estimation'"
+                                [inventoryId]="inventory.id"
+                                [inventoryName]="inventory.name"
+                                [fileUrl]="task.resultFileUrl"
+                                [taskId]="task.id.toString()"
+                            ></app-batch-status>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex justify-content-end ml-auto">
+                <p-button
+                    styleClass="white-button"
+                    styleClass="ml-2"
+                    [rounded]="true"
+                    [text]="true"
+                    [raised]="true"
+                    [plain]="true"
+                    (click)="displayPopupFct()"
+                    icon="pi pi-cog"
+                    [ariaLabel]="
+                        'inventories.choose-criteria'
+                            | translate: { inventoryName: (inventory.name | monthYear) }
+                    "
+                >
+                </p-button>
+            </div>
+            <app-criteria-popup
+                [displayPopup]="displayPopup"
+                [type]="'inventory'"
+                [subscriber]="subscriber"
+                [organization]="organization"
+                [inventory]="inventory"
+                [selectedCriteriaIS]="selectedCriteria"
+                (onSaveInventory)="saveInventory.emit($event)"
+                (onClose)="displayPopup = false"
+            ></app-criteria-popup>
+        </div>
+    </ng-template>
+</p-accordionTab>

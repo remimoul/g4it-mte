@@ -1,0 +1,114 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-business_hours
+      author: G4IT Dev Team
+      runOnChange: true
+      preconditions:
+        - onFail: MARK_RAN
+        - not:
+          - tableExists:
+              tableName: business_hours
+      changes:
+        - createTable:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: business_hours_id_pk
+              - column:
+                  name: day
+                  type: varchar
+              - column:
+                - name: start_time
+                - type: timestamp
+              - column:
+                - name: end_time
+                - type: timestamp
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: monday
+              - column:
+                  name: start_time
+                  value: 2024-05-10 04:00:00
+              - column:
+                  name: end_time
+                  value: 2024-05-10 19:00:00
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: tuesday
+              - column:
+                  name: start_time
+                  value: 2024-05-10 04:00:00
+              - column:
+                  name: end_time
+                  value: 2024-05-10 19:00:00
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: wednesday
+              - column:
+                  name: start_time
+                  value: 2024-05-10 04:00:00
+              - column:
+                  name: end_time
+                  value: 2024-05-10 19:00:00
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: thursday
+              - column:
+                  name: start_time
+                  value: 2024-05-10 04:00:00
+              - column:
+                  name: end_time
+                  value: 2024-05-10 19:00:00
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: friday
+              - column:
+                  name: start_time
+                  value: 2024-05-10 04:00:00
+              - column:
+                  name: end_time
+                  value: 2024-05-10 19:00:00
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: saturday
+              - column:
+                  name: start_time
+                  value: null
+              - column:
+                  name: end_time
+                  value: null
+        - insert:
+            tableName: business_hours
+            columns:
+              - column:
+                  name: day
+                  value: sunday
+              - column:
+                  name: start_time
+                  value: null
+              - column:
+                  name: end_time
+                  value: null

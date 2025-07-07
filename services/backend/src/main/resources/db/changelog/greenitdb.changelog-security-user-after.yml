@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-user-table
+      author: G4IT Dev Team
+      validCheckSum: ANY
+      preConditions:
+        - onFail: CONTINUE
+        - not:
+            - columnExists:
+                tableName: g4it_user
+                columnName: first_name
+      changes:
+        - addColumn:
+            tableName: g4it_user
+            columns:
+              - column:
+                  name: first_name
+                  type: varchar(255)
+              - column:
+                  name: last_name
+                  type: varchar(255)
+              - column:
+                  name: sub
+                  type: varchar(255)
+              - column:
+                  name: domain
+                  type: varchar(255)
+        - renameColumn:
+            tableName: g4it_user
+            newColumnName: email
+            oldColumnName: username
+        - addUniqueConstraint:
+            columnNames: sub
+            constraintName: sub_unique
+            tableName: g4it_user
+
+  - changeSet:
+      id: user-table-add-admin-user
+      author: G4IT Dev Team
+      changes:
+        - sql:
+            INSERT INTO g4it_user (email, first_name, last_name, domain)
+            SELECT 'admin@g4it.com', 'Admin', 'No Security', 'g4it.com'
+            WHERE NOT EXISTS (SELECT id from g4it_user WHERE email = 'admin@g4it.com');

@@ -1,0 +1,174 @@
+openapi: "3.0.3"
+info:
+  title: Swagger GreenIT - Open API 3.0 - Digital Service Referential
+  description: This is a GreenIT Server based on the OpenAPI 3.0 specification.
+  version: '1.0.0'
+
+tags:
+  - name: digital-service referential
+    description: All endpoint for digital service referential
+
+paths:
+
+  /subscribers/{subscriber}/organizations/{organization}/digital-services/device-type:
+    parameters:
+      - $ref: '#/components/parameters/subscriberPathParam'
+      - $ref: '#/components/parameters/organizationPathParam'
+    get:
+      tags:
+        - digital-service referential
+      summary: Get terminal device type referential
+      x-custom-role: "hasRole('DIGITAL_SERVICE_READ')"
+      operationId: getTerminalDeviceTypeRef
+      responses:
+        '200':
+          description: The device type list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DeviceTypeRefRest"
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  /subscribers/{subscriber}/organizations/{organization}/digital-services/country:
+    parameters:
+      - $ref: '#/components/parameters/subscriberPathParam'
+      - $ref: '#/components/parameters/organizationPathParam'
+    get:
+      tags:
+        - digital-service referential
+      summary: Get country
+      x-custom-role: "hasRole('DIGITAL_SERVICE_READ')"
+      operationId: getCountryRef
+      responses:
+        '200':
+          description: The country list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  /subscribers/{subscriber}/organizations/{organization}/digital-services/network-type:
+    parameters:
+      - $ref: '#/components/parameters/subscriberPathParam'
+      - $ref: '#/components/parameters/organizationPathParam'
+    get:
+      tags:
+        - digital-service referential
+      summary: Get network type
+      x-custom-role: "hasRole('DIGITAL_SERVICE_READ')"
+      operationId: getNetworkTypeRef
+      responses:
+        '200':
+          description: The network type list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NetworkTypeRefRest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  /subscribers/{subscriber}/organizations/{organization}/digital-services/server-host:
+    parameters:
+      - $ref: '#/components/parameters/subscriberPathParam'
+      - $ref: '#/components/parameters/organizationPathParam'
+      - in: query
+        name: type
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - digital-service referential
+      summary: Get server host
+      x-custom-role: "hasRole('DIGITAL_SERVICE_READ')"
+      operationId: getServerHost
+      responses:
+        '200':
+          description: The server host list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerHostRefRest'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  /referential/boaviztapi/countries:
+    get:
+      tags:
+        - digital-service referential
+      summary: Get a map of available countries in Boaviztapi
+      operationId: getBoaviztaCountries
+      responses:
+        '200':
+          description: The country map as strings
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  /referential/boaviztapi/cloud/providers:
+    get:
+      tags:
+        - digital-service referential
+      summary: Get list of available cloud providers in Boaviztapi
+      operationId: getAllCloudProviders
+      responses:
+        '200':
+          description: The provider name list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+
+  /referential/boaviztapi/cloud/providers/instances:
+    parameters:
+      - $ref: '#/components/parameters/cloudProviderQueryParam'
+    get:
+      tags:
+        - digital-service referential
+      summary: Get list of available instances in Boaviztapi
+      operationId: getAllCloudInstances
+      responses:
+        '200':
+          description: The instance name list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: "#/components/responses/InternalServerError"

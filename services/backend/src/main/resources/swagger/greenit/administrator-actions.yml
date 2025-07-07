@@ -1,0 +1,44 @@
+openapi: "3.0.3"
+info:
+  title: Swagger GreenIT - Open API 3.0 - Administrator
+  description: This is a Inventory Server based on the OpenAPI 3.0 specification.
+  version: '1.0.0'
+
+tags:
+  - name: administrator-actions
+    description: Endpoint for subscriber administration actions
+
+paths:
+  /administrator-actions/do-admin-actions:
+    post:
+      tags:
+        - administrator-actions
+      summary: migrate the digital services
+      operationId: doAdminActions
+      x-custom-role: "hasRole('SUPER_ADMINISTRATOR')"
+      responses:
+        '200':
+          description: response status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllEvaluationStatusRest"
+          '500':
+            $ref: "#/components/responses/InternalServerError"
+
+  /administrator-actions/remove-write-access:
+    post:
+      tags:
+        - administrator-actions
+      summary: remove write privilege on demo
+      operationId: removeWriteAccess
+      x-custom-role: "hasRole('SUPER_ADMINISTRATOR')"
+      responses:
+        '200':
+          description: response status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllEvaluationStatusRest"
+          '500':
+            $ref: "#/components/responses/InternalServerError"

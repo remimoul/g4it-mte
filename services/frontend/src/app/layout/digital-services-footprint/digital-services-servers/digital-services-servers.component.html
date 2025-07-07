@@ -1,0 +1,25 @@
+<div class="table-container">
+    <app-digital-service-table
+        titleText="servers"
+        addButton="add-button"
+        translationPrefix="digital-services-servers"
+        addButtonId="add-servers"
+        [headerFields]="headerFields"
+        [data]="serverData()"
+        (sidebar)="changeSidebar($event)"
+        (resetItem)="addNewServer()"
+        (setItem)="setItem($event)"
+        (deleteItem)="deleteItem($event)"
+    ></app-digital-service-table>
+</div>
+@if (sidebarVisible) {
+    <p-sidebar
+        [(visible)]="sidebarVisible"
+        position="right"
+        styleClass="p-sidebar-lg"
+        (onHide)="closeSidebar()"
+        ariaCloseLabel="Close"
+    >
+        <router-outlet></router-outlet>
+    </p-sidebar>
+}
