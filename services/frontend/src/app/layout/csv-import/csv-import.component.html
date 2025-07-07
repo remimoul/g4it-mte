@@ -1,0 +1,151 @@
+<div class="csv-import-container">
+    <p-card>
+        <ng-template pTemplate="header">
+            <div class="card-header">
+                <h1>
+                    {{
+                        "csv-import.title"
+                            | translate: { OrganizationName: "Demo Organization" }
+                    }}
+                </h1>
+            </div>
+        </ng-template>
+
+        <div class="upload-section">
+            <p class="description">{{ "csv-import.description" | translate }}</p>
+
+            <!-- Endpoint Selection -->
+            <div class="endpoint-selection">
+                <label for="endpoint-dropdown">{{
+                    "csv-import.select-endpoint" | translate
+                }}</label>
+                <p-dropdown
+                    id="endpoint-dropdown"
+                    [options]="csvEndpoints"
+                    [(ngModel)]="selectedEndpoint"
+                    optionLabel="label"
+                    placeholder="{{
+                        'csv-import.select-endpoint-placeholder' | translate
+                    }}"
+                    class="endpoint-dropdown"
+                    [style]="{ width: '100%' }"
+                >
+                    <ng-template pTemplate="selectedItem" let-selectedOption>
+                        <div class="endpoint-item" *ngIf="selectedOption">
+                            <span>{{ selectedOption.label }}</span>
+                            <small class="endpoint-url">{{ selectedOption.url }}</small>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="item" let-endpoint>
+                        <div class="endpoint-item">
+                            <span>{{ endpoint.label }}</span>
+                            <small class="endpoint-url">{{ endpoint.url }}</small>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+
+            <p-fileUpload
+                #fileUpload
+                name="csvFile"
+                [multiple]="false"
+                accept=".csv"
+                [maxFileSize]="maxFileSize"
+                [customUpload]="true"
+                (uploadHandler)="onUpload($event)"
+                (onSelect)="onSelect($event)"
+                (onRemove)="onRemove($event)"
+                (onError)="onError($event)"
+                [auto]="false"
+                [disabled]="!selectedEndpoint"
+                chooseLabel="{{ 'common.choose-file' | translate }}"
+                uploadLabel="{{ 'csv-import.upload-button' | translate }}"
+                cancelLabel="{{ 'common.cancel' | translate }}"
+                class="custom-file-upload"
+                mode="basic"
+                [showUploadButton]="true"
+                [showCancelButton]="false"
+            ></p-fileUpload>
+
+            <!-- Section d'informations -->
+            <div class="upload-info">
+                <p>
+                    <strong>{{ "csv-import.supported-formats" | translate }}</strong>
+                </p>
+                <p>{{ "csv-import.max-file-size" | translate }}</p>
+            </div>
+
+            <!-- Section de traitement -->
+            <div class="processing-section" *ngIf="isProcessing">
+                <p-progressBar mode="indeterminate"></p-progressBar>
+                <p>{{ "csv-import.processing" | translate }}</p>
+            </div>
+        </div>
+
+        <div class="uploaded-file" *ngIf="uploadedFile">
+            <h3>{{ "common.uploaded" | translate }}</h3>
+            <div class="file-list">
+                <div class="file-item">
+                    <i class="pi pi-file"></i>
+                    <span class="file-name">{{ uploadedFile.name }}</span>
+                    <span class="file-size"
+                        >({{ (uploadedFile.size / 1024 / 1024).toFixed(2) }} MB)</span
+                    >
+                    <p-button
+                        icon="pi pi-trash"
+                        severity="danger"
+                        size="small"
+                        [text]="true"
+                        (click)="clearFile()"
+                        (keydown.enter)="clearFile()"
+                        (keydown.space)="clearFile()"
+                        [title]="'csv-import.delete-file' | translate"
+                        class="delete-file-btn"
+                    ></p-button>
+                </div>
+            </div>
+
+            <!-- Résumé de l'import -->
+            <div class="import-summary" *ngIf="lastUploadResponse">
+                <div class="summary-stats">
+                    <div class="stat-item success">
+                        <i class="pi pi-check-circle"></i>
+                        <span
+                            >{{ "csv-import.imported-lines" | translate }}:
+                            {{ importedLineNumber }}</span
+                        >
+                    </div>
+                    <div class="stat-item error" *ngIf="uploadErrors.length > 0">
+                        <i class="pi pi-exclamation-triangle"></i>
+                        <span
+                            >{{ "csv-import.validation-errors" | translate }}:
+                            {{ uploadErrors.length }}</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section des erreurs de validation -->
+        <div class="validation-errors" *ngIf="uploadErrors.length > 0">
+            <p-card>
+                <ng-template pTemplate="header">
+                    <div class="error-header">
+                        <i class="pi pi-exclamation-triangle"></i>
+                        <h3>{{ "csv-import.validation-errors-title" | translate }}</h3>
+                    </div>
+                </ng-template>
+
+                <div class="error-list">
+                    <div
+                        class="error-item"
+                        *ngFor="let error of uploadErrors; let i = index"
+                    >
+                        <div class="error-number">{{ i + 1 }}</div>
+                        <div class="error-message">{{ error }}</div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+    </p-card>
+</div>

@@ -24,6 +24,14 @@ export const appRoutes: Routes = [
         canActivate,
     },
     {
+        path: Constants.CSV_IMPORT,
+        loadComponent: () =>
+            import("../csv-import/csv-import.component").then(
+                (m) => m.CsvImportComponent,
+            ),
+        canActivate,
+    },
+    {
         path: "administration",
         loadChildren: () =>
             import("../administration/administration.module").then(
