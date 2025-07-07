@@ -12,9 +12,9 @@
 export const environment = {
     production: false,
     securedEndpoints: ["inventories", "digital-services", "template-files"],
-    apiBaseUrl: "http://localhost:8080",
+    apiBaseUrl: "http://localhost:8082",
     keycloak: {
-        issuer: "http://localhost:8180/auth",
+        issuer: "http://localhost:8080",
         realm: "g4it",
         clientId: "g4it",
         enabled: "true",
