@@ -17,7 +17,7 @@ export const environment = {
         issuer: "http://localhost:8080",
         realm: "g4it",
         clientId: "g4it",
-        enabled: "true",
+        enabled: "false", // Disabled for local development without HTTPS
     },
     frontEndUrl: "http://localhost:4200",
     showBetaFeatures: "true",

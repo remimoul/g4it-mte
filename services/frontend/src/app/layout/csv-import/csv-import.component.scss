@@ -33,6 +33,11 @@
         margin-bottom: 0.5rem;
         font-size: 1rem;
     }
+
+    .endpoint-dropdown {
+        position: relative;
+        z-index: 1000;
+    }
 }
 
 .description {
@@ -337,5 +342,67 @@
 
     .upload-area {
         padding: 2rem 1rem;
+    }
+}
+
+/* Styles globaux pour le dropdown PrimeNG */
+:host ::ng-deep {
+    .p-dropdown-panel {
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1001 !important;
+
+        // Force le dropdown à s'adapter à l'espace disponible
+        &.p-dropdown-panel-flipped {
+            transform: translateY(-100%);
+            margin-top: -2px;
+        }
+    }
+
+    .p-dropdown {
+        width: 100%;
+
+        .p-dropdown-label {
+            padding: 0.75rem 1rem;
+        }
+
+        .p-dropdown-trigger {
+            padding: 0.75rem;
+        }
+    }
+
+    .endpoint-item {
+        padding: 0.5rem 0;
+
+        span {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .endpoint-url {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+    }
+
+    .p-dropdown-items {
+        .p-dropdown-item {
+            padding: 0.75rem 1rem;
+
+            &:hover {
+                background: #f3f4f6;
+            }
+
+            &.p-highlight {
+                background: #059669;
+                color: white;
+
+                .endpoint-url {
+                    color: rgba(255, 255, 255, 0.8);
+                }
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
     "csv-import": {
-        "title": "CSV Import - {{OrganizationName}}",
+        "title": "Loading reference data - {{OrganizationName}}",
         "description": "Import a CSV file to populate referential data",
         "select-endpoint": "Select target endpoint",
         "select-endpoint-placeholder": "Choose the API endpoint for your CSV data",
@@ -142,6 +142,7 @@
         "useful-info-desc": "G4IT versions, business hours and support contact",
         "inventories": "Inventories",
         "digital-services": "Digital services",
+        "csv-import": "Upload Referentials",
         "skip-to-main-content": "Skip to Main Content",
         "overgreen-logo": "Overgreen Logo",
         "soprasteria-logo": "Sopra Steria logo",

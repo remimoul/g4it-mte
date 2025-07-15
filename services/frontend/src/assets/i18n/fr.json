@@ -124,6 +124,7 @@
         "useful-info-desc": "Versions G4IT, heures d'ouverture et contact d'assistance",
         "inventories": "Inventaires",
         "digital-services": "Services numériques",
+        "csv-import": "Charger Référentiels",
         "skip-to-main-content": "Accéder au contenu principal",
         "overgreen-logo": "Overgreen Logo",
         "soprasteria-logo": "Sopra Steria Logo",
@@ -153,7 +154,7 @@
         "error-occurred": "Une erreur est survenue"
     },
     "csv-import": {
-        "title": "Import CSV - {{OrganizationName}}",
+        "title": "Chargement données référentiels - {{OrganizationName}}",
         "description": "Importez un fichier CSV pour alimenter les données de référentiel",
         "select-endpoint": "Sélectionner l'endpoint cible",
         "select-endpoint-placeholder": "Choisissez l'endpoint API pour vos données CSV",
