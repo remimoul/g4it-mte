@@ -11,6 +11,7 @@ import { AdministrationPanelComponent } from "./administration-panel/administrat
 import { OrganizationsComponent } from "./administration-panel/organizations/organizations.component";
 import { SuperAdminComponent } from "./administration-panel/super-admin/super-admin.component";
 import { UsersComponent } from "./administration-panel/users/users.component";
+import { CsvImportComponent } from "./administration-panel/update-reference/update-reference.component";
 
 const titleResolveObject = {
     resolve: {
@@ -43,10 +44,7 @@ const routes: Routes = [
             },
             {
                 path: "update-reference",
-                loadComponent: () =>
-                    import("../update-reference/update-reference.component").then(
-                        (m) => m.CsvImportComponent,
-                    ),
+                component: CsvImportComponent,
                 ...titleResolveObject,
             },
         ],

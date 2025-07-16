@@ -19,7 +19,7 @@ import { FormsModule } from "@angular/forms";
 import {
     CsvImportDataService,
     CsvImportEndpoint,
-} from "../../core/service/data/csv-import-data.service";
+} from "../../../../core/service/data/csv-import-data.service";
 
 @Component({
     selector: "app-update-reference",
