@@ -39,7 +39,7 @@ import {
     templateUrl: "./update-reference.component.html",
     styleUrls: ["./update-reference.component.scss"],
 })
-export class CsvImportComponent implements OnInit {
+export class UpdateReferenceComponent implements OnInit {
     @ViewChild("fileUpload") fileUpload!: FileUpload;
 
     uploadedFile: File | null = null;
