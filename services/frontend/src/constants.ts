@@ -212,12 +212,11 @@ export abstract class Constants {
     static readonly USEFUL_INFORMATION = "useful-information";
     static readonly DECLARATIONS = "declarations";
     static readonly WELCOME_PAGE = "welcome-page";
-    static readonly CSV_IMPORT = "csv-import";
+    static readonly CSV_IMPORT = "update-reference";
 
     static readonly VALID_PAGES = [
         this.USEFUL_INFORMATION,
         this.DECLARATIONS,
         this.WELCOME_PAGE,
-        this.CSV_IMPORT,
     ];
 }

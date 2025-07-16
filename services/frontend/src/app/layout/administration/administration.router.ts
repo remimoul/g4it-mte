@@ -41,6 +41,14 @@ const routes: Routes = [
                 component: SuperAdminComponent,
                 ...titleResolveObject,
             },
+            {
+                path: "update-reference",
+                loadComponent: () =>
+                    import("../update-reference/update-reference.component").then(
+                        (m) => m.CsvImportComponent,
+                    ),
+                ...titleResolveObject,
+            },
         ],
     },
 ];

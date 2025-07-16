@@ -22,7 +22,7 @@ import {
 } from "../../core/service/data/csv-import-data.service";
 
 @Component({
-    selector: "app-csv-import",
+    selector: "app-update-reference",
     standalone: true,
     imports: [
         CommonModule,
@@ -36,8 +36,8 @@ import {
         FormsModule,
     ],
     providers: [MessageService],
-    templateUrl: "./csv-import.component.html",
-    styleUrls: ["./csv-import.component.scss"],
+    templateUrl: "./update-reference.component.html",
+    styleUrls: ["./update-reference.component.scss"],
 })
 export class CsvImportComponent implements OnInit {
     @ViewChild("fileUpload") fileUpload!: FileUpload;
