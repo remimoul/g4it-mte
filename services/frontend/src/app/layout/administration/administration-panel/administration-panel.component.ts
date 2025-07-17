@@ -48,6 +48,14 @@ export class AdministrationPanelComponent {
                     id: "super-admin-tab",
                 });
             }
+
+            if (user.isSuperAdmin) {
+                this.tabMenuList.push({
+                    label: this.translate.instant("administration.update-reference"),
+                    routerLink: "update-reference",
+                    id: "update-reference-tab",
+                });
+            }
         });
     }
 }

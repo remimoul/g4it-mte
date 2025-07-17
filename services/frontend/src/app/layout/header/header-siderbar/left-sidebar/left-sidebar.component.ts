@@ -44,15 +44,12 @@ export class LeftSidebarComponent implements OnInit {
         this.getTitle("digital-services.title", "digital-services"),
     );
     inventoriesTitle = computed(() => this.getTitle("inventories.title", "inventories"));
-    csvImportTitle = computed(() =>
-        this.getTitle("csv-import.title", this.constants.CSV_IMPORT),
-    );
+
     administrationTitle = computed(() =>
         this.getTitle("common.administration", "administration"),
     );
     digitalServicesAriaCurrent = computed(() => this.getAriaCurrent("digital-services"));
     inventoriesAriaCurrent = computed(() => this.getAriaCurrent("inventories"));
-    csvImportAriaCurrent = computed(() => this.getAriaCurrent(this.constants.CSV_IMPORT));
     administrationAriaCurrent = computed(() => this.getAriaCurrent("administration"));
     public globalStore = inject(GlobalStoreService);
     selectedPage = signal("");

@@ -4,7 +4,6 @@
   <img width="200" src="services/frontend/src/assets/images/logos/logo-overgreen-small.svg" alt="G4IT logo" align="center">
 </p>
 
-
 G4IT is a platform that facilitates the assessment, definition and management of plans to reduce the impact of digital technology, at an organizational scale
 
 [![LICENSE : APACHE LICENSE 2.0](services/frontend/src/assets/images/logos/apache-license.svg)](LICENSE.txt)
@@ -18,11 +17,9 @@ G4IT is a platform that facilitates the assessment, definition and management of
 - Impact assessment according to international standards: multi-stage, multi-criteria and multi-component
 - Take your analysis further by extracting data from the platform
 
-## License  
-
+## License
 
 G4IT is licensed. See [license file](LICENSE.txt) in the same directory.
-
 
 ## Overview
 
@@ -34,10 +31,5 @@ deployment on a developer station.
 ## Getting started
 
 See the official documentation https://saas-g4it.com/documentation/
-
-## Contact 
-
-For any request you can contact the G4IT Team <a href="mailto:support.g4it@soprasteria.com"> support.g4it@soprasteria.com</a> 
-
 
 [Back to top](#g4it)

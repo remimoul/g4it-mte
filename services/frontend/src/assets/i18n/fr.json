@@ -124,7 +124,6 @@
         "useful-info-desc": "Versions G4IT, heures d'ouverture et contact d'assistance",
         "inventories": "Inventaires",
         "digital-services": "Services numériques",
-        "csv-import": "Charger Référentiels",
         "skip-to-main-content": "Accéder au contenu principal",
         "overgreen-logo": "Overgreen Logo",
         "soprasteria-logo": "Sopra Steria Logo",
@@ -152,23 +151,6 @@
     },
     "errors": {
         "error-occurred": "Une erreur est survenue"
-    },
-    "csv-import": {
-        "title": "Chargement données référentiels - {{OrganizationName}}",
-        "description": "Importez un fichier CSV pour alimenter les données de référentiel",
-        "select-endpoint": "Sélectionner l'endpoint cible",
-        "select-endpoint-placeholder": "Choisissez l'endpoint API pour vos données CSV",
-        "upload-area": "Déposez votre fichier CSV ici ou cliquez pour parcourir",
-        "supported-formats": "Formats supportés : .csv",
-        "max-file-size": "Taille maximale : 100MB",
-        "upload-button": "Télécharger le fichier",
-        "processing": "Traitement de votre fichier...",
-        "success": "Fichier téléchargé avec succès",
-        "error": "Erreur lors du téléchargement du fichier",
-        "delete-file": "Supprimer le fichier",
-        "imported-lines": "Lignes importées",
-        "validation-errors": "Erreurs de validation",
-        "validation-errors-title": "Erreurs de validation"
     },
     "digital-services": {
         "headerForCreatedByMe": "CRÉÉ{{plural}} PAR MOI ({{count}})",
@@ -732,6 +714,7 @@
         "manage-users": "Gérer les utilisateurs",
         "manage-workspaces": "Gérer les espaces de travail",
         "super-admin-title": "Super Admin",
+        "update-reference": "Mettre à jour les référentiels",
         "organization-placeholder": "Choisissez l'organisation",
         "accessibility": {
             "placeholder": "Sélection du souscripteur, {{name}} actuellement sélectionné.",
@@ -773,6 +756,23 @@
             "ds-header": "Module service numérique",
             "title": "Utilisateur",
             "unauthorized-domain": "Le domaine de l'email de l'utilisateur n'est pas autorisé pour le role Administrateur"
+        },
+        "uploadcsv": {
+            "uploaded": "Fichier importé :",
+            "description": "Importez un fichier CSV pour alimenter les données de référentiel",
+            "select-endpoint": "Sélectionner le référentiel cible",
+            "select-endpoint-placeholder": "Choisissez le référentiel pour vos données CSV",
+            "upload-area": "Déposez votre fichier CSV ici ou cliquez pour parcourir",
+            "supported-formats": "Formats supportés : .csv",
+            "max-file-size": "Taille maximale : 100MB",
+            "upload-button": "Télécharger le fichier",
+            "processing": "Traitement de votre fichier...",
+            "success": "Fichier téléchargé avec succès",
+            "error": "Erreur lors du téléchargement du fichier",
+            "delete-file": "Supprimer le fichier",
+            "imported-lines": "Lignes importées",
+            "validation-errors": "Erreurs de validation",
+            "validation-errors-title": "Erreurs de validation"
         },
         "role": {
             "read": "Lecture",

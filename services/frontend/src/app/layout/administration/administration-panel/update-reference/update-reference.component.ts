@@ -19,10 +19,10 @@ import { FormsModule } from "@angular/forms";
 import {
     CsvImportDataService,
     CsvImportEndpoint,
-} from "../../core/service/data/csv-import-data.service";
+} from "../../../../core/service/data/csv-import-data.service";
 
 @Component({
-    selector: "app-csv-import",
+    selector: "app-update-reference",
     standalone: true,
     imports: [
         CommonModule,
@@ -36,10 +36,10 @@ import {
         FormsModule,
     ],
     providers: [MessageService],
-    templateUrl: "./csv-import.component.html",
-    styleUrls: ["./csv-import.component.scss"],
+    templateUrl: "./update-reference.component.html",
+    styleUrls: ["./update-reference.component.scss"],
 })
-export class CsvImportComponent implements OnInit {
+export class UpdateReferenceComponent implements OnInit {
     @ViewChild("fileUpload") fileUpload!: FileUpload;
 
     uploadedFile: File | null = null;

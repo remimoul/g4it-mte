@@ -95,32 +95,6 @@
         </a>
     </div>
 
-    <!-- Nouveau menu pour l'import de fichiers CSV -->
-    <div
-        class="flex align-items-center justify-content-center my-1"
-        [ngClass]="{ 'bg-light-green': selectedPage() === constants.CSV_IMPORT }"
-    >
-        <a
-            [routerLink]="constants.CSV_IMPORT"
-            id="csv-import"
-            [ngClass]="{
-                'csv-padding-zoomin': isZoomedIn(),
-                'csv-padding': !isZoomedIn(),
-            }"
-        >
-            <div class="flex justify-content-center">
-                <img
-                    src="assets/images/icons/icon-download.svg"
-                    alt="{{ 'csv-import.title' | translate }}"
-                    [attr.title]="csvImportTitle()"
-                />
-            </div>
-            <span class="text-white span-font nav-span-text">{{
-                "common.csv-import" | translate
-            }}</span>
-        </a>
-    </div>
-
     <div class="flex-grow-1 flex align-items-center justify-content-center"></div>
     <div
         class="flex align-items-center justify-content-center mt-2 mb-5"

@@ -1,21 +1,4 @@
 {
-    "csv-import": {
-        "title": "Loading reference data - {{OrganizationName}}",
-        "description": "Import a CSV file to populate referential data",
-        "select-endpoint": "Select target endpoint",
-        "select-endpoint-placeholder": "Choose the API endpoint for your CSV data",
-        "upload-area": "Drop your CSV file here or click to browse",
-        "supported-formats": "Supported formats: .csv",
-        "max-file-size": "Maximum file size: 100MB",
-        "upload-button": "Upload File",
-        "processing": "Processing your file...",
-        "success": "File uploaded successfully",
-        "error": "Error uploading file",
-        "delete-file": "Delete file",
-        "imported-lines": "Imported lines",
-        "validation-errors": "Validation errors",
-        "validation-errors-title": "Validation Errors"
-    },
     "common": {
         "yes": "Yes",
         "no": "No",
@@ -733,6 +716,7 @@
         "manage-users": "Manage users",
         "manage-workspaces": "Manage workspaces",
         "super-admin-title": "Super Admin",
+        "update-reference": "Update reference",
         "organization-placeholder": "Choose organization",
         "accessibility": {
             "placeholder": "Subscriber selection, {{name}} currently selected",
@@ -775,6 +759,23 @@
             "ds-header": "Digital service module",
             "title": "User",
             "unauthorized-domain": "User email domain is not authorized for Administrator"
+        },
+        "uploadcsv": {
+            "uploaded": "File uploaded :",
+            "description": "Import a CSV file to populate referential data",
+            "select-endpoint": "Select target endpoint",
+            "select-endpoint-placeholder": "Choose the API endpoint for your CSV data",
+            "upload-area": "Drop your CSV file here or click to browse",
+            "supported-formats": "Supported formats: .csv",
+            "max-file-size": "Maximum file size: 100MB",
+            "upload-button": "Upload File",
+            "processing": "Processing your file...",
+            "success": "File uploaded successfully",
+            "error": "Error uploading file",
+            "delete-file": "Delete file",
+            "imported-lines": "Imported lines",
+            "validation-errors": "Validation errors",
+            "validation-errors-title": "Validation Errors"
         },
         "role": {
             "read": "Read",
