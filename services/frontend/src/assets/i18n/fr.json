@@ -152,23 +152,6 @@
     "errors": {
         "error-occurred": "Une erreur est survenue"
     },
-    "csv-import": {
-        "title": "Chargement données référentiels - {{OrganizationName}}",
-        "description": "Importez un fichier CSV pour alimenter les données de référentiel",
-        "select-endpoint": "Sélectionner l'endpoint cible",
-        "select-endpoint-placeholder": "Choisissez l'endpoint API pour vos données CSV",
-        "upload-area": "Déposez votre fichier CSV ici ou cliquez pour parcourir",
-        "supported-formats": "Formats supportés : .csv",
-        "max-file-size": "Taille maximale : 100MB",
-        "upload-button": "Télécharger le fichier",
-        "processing": "Traitement de votre fichier...",
-        "success": "Fichier téléchargé avec succès",
-        "error": "Erreur lors du téléchargement du fichier",
-        "delete-file": "Supprimer le fichier",
-        "imported-lines": "Lignes importées",
-        "validation-errors": "Erreurs de validation",
-        "validation-errors-title": "Erreurs de validation"
-    },
     "digital-services": {
         "headerForCreatedByMe": "CRÉÉ{{plural}} PAR MOI ({{count}})",
         "headerForSharedWithMe": "PARTAGÉ{{plural}} AVEC MOI ({{count}})",
@@ -773,6 +756,23 @@
             "ds-header": "Module service numérique",
             "title": "Utilisateur",
             "unauthorized-domain": "Le domaine de l'email de l'utilisateur n'est pas autorisé pour le role Administrateur"
+        },
+        "uploadcsv": {
+            "uploaded": "Fichier importé :",
+            "description": "Importez un fichier CSV pour alimenter les données de référentiel",
+            "select-endpoint": "Sélectionner l'endpoint cible",
+            "select-endpoint-placeholder": "Choisissez l'endpoint API pour vos données CSV",
+            "upload-area": "Déposez votre fichier CSV ici ou cliquez pour parcourir",
+            "supported-formats": "Formats supportés : .csv",
+            "max-file-size": "Taille maximale : 100MB",
+            "upload-button": "Télécharger le fichier",
+            "processing": "Traitement de votre fichier...",
+            "success": "Fichier téléchargé avec succès",
+            "error": "Erreur lors du téléchargement du fichier",
+            "delete-file": "Supprimer le fichier",
+            "imported-lines": "Lignes importées",
+            "validation-errors": "Erreurs de validation",
+            "validation-errors-title": "Erreurs de validation"
         },
         "role": {
             "read": "Lecture",
