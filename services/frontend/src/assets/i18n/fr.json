@@ -762,7 +762,6 @@
             "description": "Importez un fichier CSV pour alimenter les données de référentiel",
             "select-endpoint": "Sélectionner le référentiel cible",
             "select-endpoint-placeholder": "Choisissez le référentiel pour vos données CSV",
-            "upload-area": "Déposez votre fichier CSV ici ou cliquez pour parcourir",
             "supported-formats": "Formats supportés : .csv",
             "max-file-size": "Taille maximale : 100MB",
             "upload-button": "Télécharger le fichier",

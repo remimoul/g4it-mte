@@ -763,9 +763,8 @@
         "uploadcsv": {
             "uploaded": "File uploaded :",
             "description": "Import a CSV file to populate referential data",
-            "select-endpoint": "Select target endpoint",
-            "select-endpoint-placeholder": "Choose the API endpoint for your CSV data",
-            "upload-area": "Drop your CSV file here or click to browse",
+            "select-endpoint": "Selecting the target reference",
+            "select-endpoint-placeholder": "Choose the reference for your CSV data",
             "supported-formats": "Supported formats: .csv",
             "max-file-size": "Maximum file size: 100MB",
             "upload-button": "Upload File",
