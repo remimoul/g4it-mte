@@ -197,6 +197,12 @@ export class UpdateReferenceComponent implements OnInit {
         // Supprimer le fichier uploadé
         if (this.uploadedFile && this.uploadedFile.name === event.file.name) {
             this.uploadedFile = null;
+            // Réinitialiser l'upload
+            this.lastUploadResponse = null;
+            this.uploadErrors = [];
+            this.importedLineNumber = 0;
+            // Réinitialiser l'endpoint sélectionné
+            this.csvEndpoints = [];
         }
     }
 }
