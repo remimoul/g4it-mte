@@ -771,7 +771,7 @@
             "delete-file": "Supprimer le fichier",
             "imported-lines": "Lignes importées",
             "validation-errors": "Erreurs de validation",
-            "validation-errors-title": "Erreurs de validation"
+            "validation-errors-title": "Détails des erreurs"
         },
         "role": {
             "read": "Lecture",
