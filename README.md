@@ -21,13 +21,6 @@ G4IT is a platform that facilitates the assessment, definition and management of
 
 G4IT is licensed. See [license file](LICENSE.txt) in the same directory.
 
-## Overview
-
-**G4IT** is the service developed by **Sopra Steria** based on the **NumEcoEval calculation engine**.
-
-More information on this subject can be found in the documentation, but in this page, it will only be about its
-deployment on a developer station.
-
 ## Getting started
 
 See the official documentation https://saas-g4it.com/documentation/
