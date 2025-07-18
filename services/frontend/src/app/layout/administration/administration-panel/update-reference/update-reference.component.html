@@ -115,24 +115,37 @@
 
     <!-- Section des erreurs de validation -->
     <div class="validation-errors" *ngIf="uploadErrors.length > 0">
-        <p-card>
-            <ng-template pTemplate="header">
-                <div class="error-header">
+        <div class="error-container">
+            <!-- Header des erreurs -->
+            <div class="error-header">
+                <div class="error-icon-wrapper">
                     <i class="pi pi-exclamation-triangle"></i>
+                </div>
+                <div class="error-title">
                     <h3>
                         {{
                             "administration.uploadcsv.validation-errors-title" | translate
                         }}
                     </h3>
                 </div>
-            </ng-template>
+            </div>
 
-            <div class="error-list">
-                <div class="error-item" *ngFor="let error of uploadErrors; let i = index">
-                    <div class="error-number">{{ i + 1 }}</div>
-                    <div class="error-message">{{ error }}</div>
+            <!-- Liste des erreurs -->
+            <div class="error-content">
+                <div class="error-scroll-container">
+                    <div
+                        class="error-item"
+                        *ngFor="let error of uploadErrors; let i = index"
+                    >
+                        <div class="error-details">
+                            <div class="error-message">
+                                <i class="pi pi-times-circle error-message-icon"></i>
+                                {{ error }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </p-card>
+        </div>
     </div>
 </div>
